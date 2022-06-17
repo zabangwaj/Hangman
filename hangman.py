@@ -90,10 +90,14 @@ while not end_of_game:
     print (stages[lives]) #draw hangman
     guess = input ("Guess a letter: ").lower()  #Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
 
+    if guess in the_blank:
+        print (f"You've already guessed {guess}")
+
     for position in range (word_length):
         if (guess == chosen_word[position]):
             the_blank[position] = guess
     if guess not in chosen_word: #if guessed character is not in the chosen word array
+        print (f"You guessed {guess}, that's not in the word.")
         print ("You lost a life!")
         lives += 1
     print (' '.join(the_blank))
@@ -104,4 +108,5 @@ while not end_of_game:
     if lives == 6:
         print ("Game Over!")
         print (stages[lives]) #draw hangman
+        print (f"The word was {''.join(chosen_word)}!")
         end_of_game = True
